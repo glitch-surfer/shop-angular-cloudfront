@@ -4,6 +4,7 @@ import {
   aws_cloudfront_origins,
   aws_s3,
   aws_s3_deployment,
+  CfnOutput,
 } from 'aws-cdk-lib';
 
 const resourcesPath = '../../dist/app/browser';
@@ -44,6 +45,18 @@ export class DeploymentService extends Construct {
       destinationBucket: hostingBucket,
       distribution,
       distributionPaths: ['/*'],
+    });
+
+    new CfnOutput(this, 'CloudFrontURL', {
+      value: distribution.domainName,
+      description: 'The distribution URL',
+      exportName: 'CloudfrontURL',
+    });
+
+    new CfnOutput(this, 'BucketName', {
+      value: hostingBucket.bucketName,
+      description: 'The name of the S3 bucket',
+      exportName: 'BucketName',
     });
   }
 }
