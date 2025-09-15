@@ -7,7 +7,7 @@ import {
   CfnOutput,
 } from 'aws-cdk-lib';
 
-const resourcesPath = '../../dist/app/browser';
+const resourcesPath = '../dist/app/browser';
 
 export class DeploymentService extends Construct {
   constructor(scope: Construct, id: string) {
