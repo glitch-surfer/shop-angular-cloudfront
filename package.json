@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "prepare": "husky",
-    "lint:format": "npx --no-install lint-staged && npx --no-install pretty-quick --staged --pattern \"**/*.{js,ts,css,scss,html}\""
+    "lint:format": "npx --no-install lint-staged && npx --no-install pretty-quick --staged --pattern \"**/*.{js,ts,css,scss,html}\"",
+    "deploy": "npm run build && cd infra && npm run build && npx cdk deploy"
   },
   "private": true,
   "dependencies": {
