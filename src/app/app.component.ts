@@ -10,4 +10,11 @@ import { HeaderComponent } from './core/header/header.component';
   standalone: true,
   imports: [HeaderComponent, RouterOutlet],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    localStorage.setItem(
+      'authorization_token',
+      btoa('GLITCH_SURFER:TEST_PASSWORD'),
+    );
+  }
+}
