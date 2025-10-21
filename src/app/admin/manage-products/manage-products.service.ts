@@ -5,6 +5,12 @@ import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ManageProductsService extends ApiService {
+  private readonly authorization_token =
+    localStorage.getItem('authorization_token') || '';
+  private readonly authHeader = {
+    Authorization: 'Basic ' + this.authorization_token,
+  };
+
   uploadProductsCSV(file: File): Observable<unknown> {
     if (!this.endpointEnabled('import')) {
       console.warn(
@@ -29,6 +35,7 @@ export class ManageProductsService extends ApiService {
     const url = this.getUrl('import', 'import');
 
     return this.http.get<{ url: string }>(url, {
+      headers: this.authHeader,
       params: {
         name: fileName,
       },
